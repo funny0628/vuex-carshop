@@ -7,10 +7,13 @@
         <button ref="btnrefs" @click="addcar(item, index)">添加到购物车</button>
       </li>
     </ul>
+   
   </div>
 </template>
 
 <script>
+
+// import { Message } from 'iview'
 export default {
   data() {
     return {
@@ -56,9 +59,22 @@ export default {
   
   methods: {
     addcar(item, index) {
+
+      window.console.log(this.$store.state.carlist)
       this.$store.commit("ADDCAR", item);
       //修改按钮的背景颜色
       this.$refs.btnrefs[index].style.backgroundColor = "pink";
+     
+      let hastrue = this.$store.state.carlist.find(it => it.id === item.id );
+      window.console.log(hastrue)
+      if(hastrue){
+        window.console.log('这条数据是存在的')
+         this.$Message.warning({
+           content:'已经添加过购物车',
+           duration:1
+         });
+         return
+      }
       // window.console.log(this.$refs.btnrefs[index],index)
     }
   }
