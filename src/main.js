@@ -4,11 +4,14 @@ import store from './store/index.js'
 
 import {router} from './router/index.js'
 import './assets/base.css'
-import iView from 'iview';
-import 'iview/dist/styles/iview.css'; 
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+import http from './http/index.js'
+
+Vue.prototype.$http = http  
 
 Vue.config.productionTip = false
-Vue.use(iView);
+Vue.use(ElementUI);
 
 new Vue({
   store,
